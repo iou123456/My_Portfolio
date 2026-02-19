@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, ShoppingCart, BarChart3 } from 'lucide-react';
+import { ExternalLink, ShoppingCart, BarChart3, Globe, Heart, Github, Activity } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const projects = [
@@ -35,6 +35,59 @@ const projects = [
       'Achieved significant performance improvements through code splitting and caching strategies',
     ],
   },
+  {
+    title: 'Travel & Hospitality Booking Platform',
+    description: 'A full-featured travel and hospitality platform for The Bush Collection — an African safari company spanning Kenya and Tanzania. Features safari package browsing, property collections, online booking, media center, and a conservation-focused brand experience.',
+    icon: Globe,
+    color: 'green',
+    link: 'https://thebushcollection.africa/',
+    metrics: [
+      { label: 'Happy Travelers', value: '1,000+' },
+      { label: 'Average Rating', value: '4.8★' },
+    ],
+    technologies: ['React', 'Tailwind CSS', 'Cloudinary', 'REST APIs', 'Booking Engine'],
+    achievements: [
+      'Developed end-to-end booking flow with safari package selection, property browsing, and reservation management',
+      'Integrated Cloudinary-powered media center for high-performance image delivery across destinations',
+      'Built responsive, mobile-first UI showcasing 3+ destinations with immersive visuals and interactive maps',
+    ],
+  },
+  {
+    title: 'Charity Donor Dashboard',
+    description: 'A modern, responsive donor dashboard for charity organizations to track donations, manage donors, and monitor campaigns. Features interactive data visualization, real-time statistics, and an intuitive navigation system.',
+    icon: Heart,
+    color: 'amber',
+    link: 'https://charity-donor-dashborad.netlify.app/',
+    github: 'https://github.com/iou123456/charity-donor-dashboard',
+    metrics: [
+      { label: 'Total Donations Tracked', value: '$24K+' },
+      { label: 'Active Donors', value: '1,248' },
+    ],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Chart.js', 'Font Awesome'],
+    achievements: [
+      'Built interactive dashboard with Chart.js data visualization for donation trends and source analytics',
+      'Implemented responsive design with mobile sidebar toggle for seamless cross-device experience',
+      'Created campaign management interface with real-time statistics and donation status tracking',
+    ],
+  },
+  {
+    title: 'Patient Data Dashboard',
+    description: 'A responsive single-page patient dashboard that dynamically renders healthcare data via the Coalition Technologies Patient Data API. Features blood pressure charting over time, patient vitals monitoring, and a clean medical-grade UI.',
+    icon: Activity,
+    color: 'sky',
+    link: 'https://patientdatadashboard.netlify.app/',
+    github: 'https://github.com/iou123456/HTML-with-API-Integration',
+    metrics: [
+      { label: 'API-Driven Views', value: '5+' },
+      { label: 'Vital Signs Tracked', value: '3' },
+    ],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Chart.js', 'REST APIs'],
+    achievements: [
+      'Integrated Coalition Technologies Patient Data API for dynamic patient record rendering',
+      'Implemented interactive blood pressure trend charts using Chart.js with historical data visualization',
+      'Built responsive medical dashboard UI tracking heart rate, respiratory rate, and temperature vitals',
+    ],
+  },
 ];
 
 const colorVariants = {
@@ -51,6 +104,27 @@ const colorVariants = {
     border: 'group-hover:border-accent-magenta/50',
     glow: 'group-hover:shadow-glow-magenta',
     gradient: 'from-accent-magenta to-pink-400',
+  },
+  green: {
+    icon: 'text-emerald-400',
+    bg: 'bg-emerald-400/10',
+    border: 'group-hover:border-emerald-400/50',
+    glow: 'group-hover:shadow-[0_0_30px_rgba(52,211,153,0.15)]',
+    gradient: 'from-emerald-400 to-teal-400',
+  },
+  amber: {
+    icon: 'text-amber-400',
+    bg: 'bg-amber-400/10',
+    border: 'group-hover:border-amber-400/50',
+    glow: 'group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)]',
+    gradient: 'from-amber-400 to-orange-400',
+  },
+  sky: {
+    icon: 'text-sky-400',
+    bg: 'bg-sky-400/10',
+    border: 'group-hover:border-sky-400/50',
+    glow: 'group-hover:shadow-[0_0_30px_rgba(56,189,248,0.15)]',
+    gradient: 'from-sky-400 to-cyan-400',
   },
 };
 
@@ -139,13 +213,30 @@ export function ProjectsSection() {
                     <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center`}>
                       <project.icon className={`w-7 h-7 ${colors.icon}`} />
                     </div>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center ${colors.icon} opacity-0 group-hover:opacity-100 transition-opacity`}
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </motion.button>
+                    <div className="flex gap-2">
+                      {'github' in project && project.github && (
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
+                          className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center ${colors.icon} opacity-0 group-hover:opacity-100 transition-opacity`}
+                        >
+                          <Github className="w-5 h-5" />
+                        </motion.button>
+                      )}
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center ${colors.icon} opacity-0 group-hover:opacity-100 transition-opacity`}
+                        {...('link' in project && project.link
+                          ? {
+                              onClick: () => window.open(project.link, '_blank', 'noopener,noreferrer'),
+                            }
+                          : {})}
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </motion.button>
+                    </div>
                   </div>
 
                   {/* Title & Description */}
