@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, ShoppingCart, BarChart3, Globe, Heart, Github, Activity } from 'lucide-react';
+import { ExternalLink, ShoppingCart, BarChart3, Globe, Heart, Github, Activity, Leaf } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const projects = [
@@ -86,6 +86,24 @@ const projects = [
       'Integrated Coalition Technologies Patient Data API for dynamic patient record rendering',
       'Implemented interactive blood pressure trend charts using Chart.js with historical data visualization',
       'Built responsive medical dashboard UI tracking heart rate, respiratory rate, and temperature vitals',
+    ],
+  },
+  {
+    title: "Meemo's Naturals — Brand Website",
+    description: 'A luxury editorial brochure website for Meemo\'s Naturals, a natural wellness food brand based in Kitengela, Kenya. Built as a fully static single-page site with zero dependencies — no frameworks, no backend, no database. Inquiry-driven CTAs route visitors to WhatsApp or a phone call rather than a checkout flow. Design language: editorial serif typography, architectural grid layouts, and a muted natural colour palette.',
+    icon: Leaf,
+    color: 'green',
+    link: 'https://meemo-s-naturals.vercel.app/',
+    github: 'https://github.com/iou123456/Meemo-s-Naturals',
+    metrics: [
+      { label: 'Static Pages', value: 'Zero deps' },
+      { label: 'Hosting Ready', value: 'Vercel / Netlify' },
+    ],
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    achievements: [
+      'Built a fully static, dependency-free single-page brochure site optimized for performance and accessibility',
+      'Implemented inquiry-driven UX: pre-filled WhatsApp inquiry links and floating WhatsApp CTA for instant contact',
+      'Designed editorial layout with serif typography, architectural grids, animated ticker, scroll reveal and sticky navigation',
     ],
   },
 ];

@@ -14,7 +14,7 @@ const skillCategories = [
     icon: Code2,
     title: 'Frontend Frameworks',
     color: 'blue',
-    skills: ['React.js', 'Next.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3'],
+    skills: ['React.js', 'Next.js', 'JavaScript (ES6+)','Node.js', 'HTML5', 'CSS3'],
   },
   {
     icon: Palette,
