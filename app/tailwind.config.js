@@ -6,6 +6,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"DM Serif Display"', 'Georgia', '"Times New Roman"', 'serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -32,10 +34,7 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          blue: "#2d62ff",
-          magenta: "#dd23bb",
-          amber: "#f1a300",
-          coral: "#e94040",
+          warm: "#e0afa0",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -56,14 +55,17 @@ module.exports = {
           ring: "hsl(var(--sidebar-ring))",
         },
         dark: {
-          primary: "#090909",
-          secondary: "#111111",
-          tertiary: "#2d2d2d",
+          primary: "#0a0a0a",
+          secondary: "#141414",
+          tertiary: "#262626",
         },
         text: {
-          primary: "#f1f5fb",
-          secondary: "#cccccc",
-          tertiary: "#949494",
+          primary: "#fafafa",
+          secondary: "#a3a3a3",
+          tertiary: "#737373",
+        },
+        neutral: {
+          850: "#1a1a1a",
         },
       },
       borderRadius: {
@@ -75,10 +77,8 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        glow: "0 0 20px rgba(45, 98, 255, 0.3)",
-        "glow-lg": "0 0 40px rgba(45, 98, 255, 0.4)",
-        "glow-magenta": "0 0 20px rgba(221, 35, 187, 0.3)",
-        "glow-amber": "0 0 20px rgba(241, 163, 0, 0.3)",
+        subtle: "0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)",
+        lift: "0 4px 20px 0 rgb(0 0 0 / 0.4)",
       },
       keyframes: {
         "accordion-down": {
@@ -94,7 +94,7 @@ module.exports = {
           "20%,50%": { opacity: "0" },
         },
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
@@ -102,37 +102,22 @@ module.exports = {
           "100%": { opacity: "1" },
         },
         "slide-in-left": {
-          "0%": { opacity: "0", transform: "translateX(-30px)" },
+          "0%": { opacity: "0", transform: "translateX(-20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
         "slide-in-right": {
-          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "0%": { opacity: "0", transform: "translateX(20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        "scale-in": {
-          "0%": { opacity: "0", transform: "scale(0.9)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
-        },
-        "bounce-slow": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(45, 98, 255, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(45, 98, 255, 0.6)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
-        "fade-in-up": "fade-in-up 0.5s ease-out forwards",
-        "fade-in": "fade-in 0.5s ease-out forwards",
-        "slide-in-left": "slide-in-left 0.5s ease-out forwards",
-        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
-        "scale-in": "scale-in 0.5s ease-out forwards",
-        "bounce-slow": "bounce-slow 2s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "fade-in": "fade-in 0.6s ease-out forwards",
+        "slide-in-left": "slide-in-left 0.6s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.6s ease-out forwards",
       },
     },
   },

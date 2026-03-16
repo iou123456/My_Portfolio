@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Code2, Briefcase, Users, Rocket } from 'lucide-react';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useScrollFade } from '@/hooks/useScrollFade';
 
 const stats = [
   { icon: Briefcase, value: 3, suffix: '+', label: 'Years Experience' },
@@ -12,24 +13,26 @@ const stats = [
 
 export function AboutSection() {
   const { ref: sectionRef, isInView } = useScrollAnimation<HTMLElement>({ threshold: 0.2 });
+  const { ref: headingRef, opacity: headingOpacity } = useScrollFade<HTMLHeadingElement>({ startOpacity: 0.08 });
+  const { ref: bodyRef, opacity: bodyOpacity } = useScrollFade<HTMLDivElement>({ startOpacity: 0.1, offsetEnd: 0.45 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.12,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.6,
         ease: 'easeOut' as const,
       },
     },
@@ -39,32 +42,32 @@ export function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-dark-primary relative"
+      className="py-24 md:py-36 bg-dark-primary"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+          className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start"
         >
           {/* Left Column - Text */}
           <div>
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="text-accent-blue text-sm uppercase tracking-widest font-medium">
-                About Me
-              </span>
-            </motion.div>
+            <motion.p variants={itemVariants} className="text-accent-warm text-xs uppercase tracking-[0.3em] font-medium mb-6">
+              About Me
+            </motion.p>
 
             <motion.h2
+              ref={headingRef}
+              style={{ opacity: headingOpacity }}
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl font-semibold text-text-primary mb-6 leading-tight"
+              className="font-serif text-3xl md:text-4xl lg:text-5xl text-text-primary mb-8 leading-[1.1]"
             >
               Product-focused{' '}
-              <span className="gradient-text">React Developer</span> with a passion for excellence
+              <span className="text-accent-warm">React Developer</span> with a passion for excellence
             </motion.h2>
 
-            <motion.div variants={itemVariants} className="space-y-4 text-text-secondary leading-relaxed">
+            <motion.div ref={bodyRef} style={{ opacity: bodyOpacity }} variants={itemVariants} className="space-y-5 text-text-secondary leading-relaxed text-[15px]">
               <p>
                 With over <span className="text-text-primary font-medium">3 years of experience</span>, I specialize 
                 in building responsive, high-performance web applications using modern React patterns and 
@@ -77,8 +80,7 @@ export function AboutSection() {
               </p>
               <p>
                 Experienced in startup environments, I excel at shipping fast, iterating quickly, and taking 
-                ownership of product development from concept to deployment. I'm passionate about creating 
-                beautiful, frictionless user experiences that solve real business problems.
+                ownership of product development from concept to deployment.
               </p>
             </motion.div>
           </div>
@@ -86,32 +88,25 @@ export function AboutSection() {
           {/* Right Column - Stats */}
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-2 gap-4 md:gap-6"
+            className="grid grid-cols-2 gap-px bg-dark-tertiary/50 border border-dark-tertiary"
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="group relative p-6 md:p-8 rounded-2xl bg-dark-secondary border border-dark-tertiary hover:border-accent-blue/50 transition-colors"
+                className="bg-dark-primary p-8 md:p-10 group hover:bg-dark-secondary/50 transition-colors"
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-blue/5 to-accent-magenta/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <stat.icon className="w-5 h-5 text-accent-warm mb-6" />
                 
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-dark-tertiary flex items-center justify-center mb-4 group-hover:bg-accent-blue/20 transition-colors">
-                    <stat.icon className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  
-                  <div className="text-3xl md:text-4xl font-bold text-text-primary mb-1">
-                    <AnimatedCounter
-                      end={stat.value}
-                      suffix={stat.suffix}
-                      duration={2000}
-                    />
-                  </div>
-                  
-                  <p className="text-text-tertiary text-sm">{stat.label}</p>
+                <div className="text-3xl md:text-4xl font-serif text-text-primary mb-2">
+                  <AnimatedCounter
+                    end={stat.value}
+                    suffix={stat.suffix}
+                    duration={2000}
+                  />
                 </div>
+                
+                <p className="text-text-tertiary text-xs uppercase tracking-widest">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>

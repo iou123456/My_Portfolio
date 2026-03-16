@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const quickLinks = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Experience', href: '#experience' },
+  { name: 'Services', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -24,65 +23,54 @@ export function Footer() {
   };
 
   return (
-    <footer className="py-12 bg-dark-primary border-t border-dark-tertiary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+    <footer className="py-16 bg-dark-primary border-t border-dark-tertiary/50">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-12">
           {/* Logo & Tagline */}
-          <div className="text-center md:text-left">
-            <motion.a
-              href="#"
-              className="text-2xl font-semibold text-text-primary inline-block mb-2"
-              whileHover={{ scale: 1.05 }}
-            >
-              <span className="gradient-text">T</span>imsheldon Oure
-            </motion.a>
-            <p className="text-text-tertiary text-sm">React Developer</p>
+          <div>
+            <a href="#" className="font-serif text-xl text-text-primary inline-block mb-1">
+              Timsheldon<span className="text-accent-warm">.</span>
+            </a>
+            <p className="text-text-tertiary text-xs uppercase tracking-wider">React Developer — Nairobi</p>
           </div>
 
           {/* Quick Links */}
-          <nav className="flex flex-wrap justify-center gap-6">
+          <nav className="flex flex-wrap gap-x-8 gap-y-2">
             {quickLinks.map((link) => (
-              <motion.button
+              <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="text-text-secondary hover:text-text-primary transition-colors text-sm"
-                whileHover={{ y: -2 }}
+                className="text-text-tertiary hover:text-text-primary transition-colors text-xs uppercase tracking-wider"
               >
                 {link.name}
-              </motion.button>
+              </button>
             ))}
           </nav>
 
           {/* Social Links */}
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {socialLinks.map((social, index) => (
-              <motion.a
+              <a
                 key={index}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-10 h-10 rounded-lg bg-dark-secondary border border-dark-tertiary flex items-center justify-center text-text-secondary hover:text-accent-blue hover:border-accent-blue/30 transition-colors"
+                className="w-9 h-9 border border-dark-tertiary flex items-center justify-center text-text-tertiary hover:text-accent-warm hover:border-accent-warm/40 transition-colors"
                 aria-label={social.label}
               >
-                <social.icon className="w-4 h-4" />
-              </motion.a>
+                <social.icon className="w-3.5 h-3.5" />
+              </a>
             ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div className="my-8 border-t border-dark-tertiary" />
+        <div className="h-px bg-dark-tertiary/50 mb-8" />
 
         {/* Copyright */}
-        <div className="text-center">
-          <p className="text-text-tertiary text-sm flex items-center justify-center gap-1">
-            © {new Date().getFullYear()} Timsheldon Oure. Made with
-            <Heart className="w-4 h-4 text-accent-coral fill-accent-coral" />
-            in Nairobi, Kenya
-          </p>
-        </div>
+        <p className="text-text-tertiary/60 text-xs text-center tracking-wider">
+          © {new Date().getFullYear()} Timsheldon Oure. All rights reserved.
+        </p>
       </div>
     </footer>
   );

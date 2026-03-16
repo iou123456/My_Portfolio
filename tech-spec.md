@@ -205,9 +205,6 @@ colors: {
 
 ## Build Commands
 
-```bash
-# Initialize project
-bash /app/.kimi/skills/webapp-building/scripts/init-webapp.sh "Timsheldon Oure Portfolio"
 
 # Install animation library
 cd /mnt/okcomputer/output/app && npm install framer-motion

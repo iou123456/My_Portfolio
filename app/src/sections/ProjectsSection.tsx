@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, ShoppingCart, BarChart3, Globe, Heart, Github, Activity, Leaf } from 'lucide-react';
+import { ShoppingCart, BarChart3, Globe, Heart, Github, Activity, Leaf, ArrowUpRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useScrollFade } from '@/hooks/useScrollFade';
 
 const projects = [
   {
     title: 'E-Commerce Platform',
     description: 'A modern e-commerce platform built from the ground up using component-driven architecture and design system principles. Features responsive design, payment integration, and analytics tracking.',
     icon: ShoppingCart,
-    color: 'blue',
     metrics: [
       { label: 'Engagement Increase', value: '25%' },
       { label: 'Load Time Reduction', value: '30%' },
@@ -23,7 +23,6 @@ const projects = [
     title: 'SaaS Web Application',
     description: 'A scalable SaaS application with React frontend consuming Django REST APIs. Features real-time data updates, interactive dashboards, and comprehensive data visualization.',
     icon: BarChart3,
-    color: 'magenta',
     metrics: [
       { label: 'Load Time Reduction', value: '30%' },
       { label: 'Development Speed', value: '40%' },
@@ -37,9 +36,8 @@ const projects = [
   },
   {
     title: 'Travel & Hospitality Booking Platform',
-    description: 'A full-featured travel and hospitality platform for The Bush Collection — an African safari company spanning Kenya and Tanzania. Features safari package browsing, property collections, online booking, media center, and a conservation-focused brand experience.',
+    description: 'A full-featured travel and hospitality platform for The Bush Collection — an African safari company spanning Kenya and Tanzania.',
     icon: Globe,
-    color: 'green',
     link: 'https://thebushcollection.africa/',
     metrics: [
       { label: 'Happy Travelers', value: '1,000+' },
@@ -54,9 +52,8 @@ const projects = [
   },
   {
     title: 'Charity Donor Dashboard',
-    description: 'A modern, responsive donor dashboard for charity organizations to track donations, manage donors, and monitor campaigns. Features interactive data visualization, real-time statistics, and an intuitive navigation system.',
+    description: 'A modern, responsive donor dashboard for charity organizations to track donations, manage donors, and monitor campaigns.',
     icon: Heart,
-    color: 'amber',
     link: 'https://charity-donor-dashborad.netlify.app/',
     github: 'https://github.com/iou123456/charity-donor-dashboard',
     metrics: [
@@ -72,9 +69,8 @@ const projects = [
   },
   {
     title: 'Patient Data Dashboard',
-    description: 'A responsive single-page patient dashboard that dynamically renders healthcare data via the Coalition Technologies Patient Data API. Features blood pressure charting over time, patient vitals monitoring, and a clean medical-grade UI.',
+    description: 'A responsive single-page patient dashboard that dynamically renders healthcare data via the Coalition Technologies Patient Data API.',
     icon: Activity,
-    color: 'sky',
     link: 'https://patientdatadashboard.netlify.app/',
     github: 'https://github.com/iou123456/HTML-with-API-Integration',
     metrics: [
@@ -90,9 +86,8 @@ const projects = [
   },
   {
     title: "Meemo's Naturals — Brand Website",
-    description: 'A luxury editorial brochure website for Meemo\'s Naturals, a natural wellness food brand based in Kitengela, Kenya. Built as a fully static single-page site with zero dependencies — no frameworks, no backend, no database. Inquiry-driven CTAs route visitors to WhatsApp or a phone call rather than a checkout flow. Design language: editorial serif typography, architectural grid layouts, and a muted natural colour palette.',
+    description: 'A luxury editorial brochure website for Meemo\'s Naturals, a natural wellness food brand. Built as a fully static single-page site with zero dependencies.',
     icon: Leaf,
-    color: 'green',
     link: 'https://meemo-s-naturals.vercel.app/',
     github: 'https://github.com/iou123456/Meemo-s-Naturals',
     metrics: [
@@ -108,59 +103,22 @@ const projects = [
   },
 ];
 
-const colorVariants = {
-  blue: {
-    icon: 'text-accent-blue',
-    bg: 'bg-accent-blue/10',
-    border: 'group-hover:border-accent-blue/50',
-    glow: 'group-hover:shadow-glow',
-    gradient: 'from-accent-blue to-cyan-400',
-  },
-  magenta: {
-    icon: 'text-accent-magenta',
-    bg: 'bg-accent-magenta/10',
-    border: 'group-hover:border-accent-magenta/50',
-    glow: 'group-hover:shadow-glow-magenta',
-    gradient: 'from-accent-magenta to-pink-400',
-  },
-  green: {
-    icon: 'text-emerald-400',
-    bg: 'bg-emerald-400/10',
-    border: 'group-hover:border-emerald-400/50',
-    glow: 'group-hover:shadow-[0_0_30px_rgba(52,211,153,0.15)]',
-    gradient: 'from-emerald-400 to-teal-400',
-  },
-  amber: {
-    icon: 'text-amber-400',
-    bg: 'bg-amber-400/10',
-    border: 'group-hover:border-amber-400/50',
-    glow: 'group-hover:shadow-[0_0_30px_rgba(251,191,36,0.15)]',
-    gradient: 'from-amber-400 to-orange-400',
-  },
-  sky: {
-    icon: 'text-sky-400',
-    bg: 'bg-sky-400/10',
-    border: 'group-hover:border-sky-400/50',
-    glow: 'group-hover:shadow-[0_0_30px_rgba(56,189,248,0.15)]',
-    gradient: 'from-sky-400 to-cyan-400',
-  },
-};
-
 export function ProjectsSection() {
   const { ref: sectionRef, isInView } = useScrollAnimation<HTMLElement>({ threshold: 0.1 });
+  const { ref: headingRef, opacity: headingOpacity } = useScrollFade<HTMLHeadingElement>({ startOpacity: 0.08 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
@@ -175,141 +133,121 @@ export function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-dark-secondary relative"
+      className="py-24 md:py-36 bg-dark-secondary"
     >
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16"
         >
-          <span className="text-accent-blue text-sm uppercase tracking-widest font-medium mb-4 block">
-            Featured Work
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-text-primary mb-4">
-            Key <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            Highlighting impactful projects that demonstrate technical expertise and business value
+          <div>
+            <p className="text-accent-warm text-xs uppercase tracking-[0.3em] font-medium mb-6">
+              Featured Work
+            </p>
+            <motion.h2 ref={headingRef} style={{ opacity: headingOpacity }} className="font-serif text-3xl md:text-4xl lg:text-5xl text-text-primary">
+              Key Projects
+            </motion.h2>
+          </div>
+          <p className="text-text-tertiary max-w-sm text-sm leading-relaxed">
+            Highlighting impactful projects that demonstrate technical expertise and business value.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects List */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid lg:grid-cols-2 gap-8"
+          className="space-y-0 divide-y divide-dark-tertiary/50 border-t border-dark-tertiary/50"
         >
-          {projects.map((project, index) => {
-            const colors = colorVariants[project.color as keyof typeof colorVariants];
-            
-            return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className={`group relative rounded-2xl bg-dark-primary border border-dark-tertiary ${colors.border} ${colors.glow} overflow-hidden transition-all duration-300`}
-              >
-                {/* Gradient Overlay on Hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-
-                <div className="relative z-10 p-8">
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center`}>
-                      <project.icon className={`w-7 h-7 ${colors.icon}`} />
-                    </div>
-                    <div className="flex gap-2">
-                      {'github' in project && project.github && (
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
-                          className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center ${colors.icon} opacity-0 group-hover:opacity-100 transition-opacity`}
-                        >
-                          <Github className="w-5 h-5" />
-                        </motion.button>
-                      )}
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center ${colors.icon} opacity-0 group-hover:opacity-100 transition-opacity`}
-                        {...('link' in project && project.link
-                          ? {
-                              onClick: () => window.open(project.link, '_blank', 'noopener,noreferrer'),
-                            }
-                          : {})}
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </motion.button>
-                    </div>
-                  </div>
-
-                  {/* Title & Description */}
-                  <h3 className="text-2xl font-semibold text-text-primary mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed mb-6">
-                    {project.description}
-                  </p>
-
-                  {/* Metrics */}
-                  <div className="flex flex-wrap gap-4 mb-6">
-                    {project.metrics.map((metric, metricIndex) => (
-                      <div
-                        key={metricIndex}
-                        className={`px-4 py-2 rounded-lg ${colors.bg}`}
-                      >
-                        <span className={`text-2xl font-bold ${colors.icon}`}>
-                          {metric.value}
-                        </span>
-                        <p className="text-text-tertiary text-xs mt-0.5">
-                          {metric.label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Achievements */}
-                  <ul className="space-y-2 mb-6">
-                    {project.achievements.map((achievement, achIndex) => (
-                      <li
-                        key={achIndex}
-                        className="flex items-start gap-2 text-text-secondary text-sm"
-                      >
-                        <span className={`w-1 h-1 rounded-full ${colors.icon.replace('text-', 'bg-')} mt-2 flex-shrink-0`} />
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.icon}`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="group py-10 md:py-14"
+            >
+              {/* Top row: number, title, links */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start gap-6">
+                  <span className="text-dark-tertiary text-xs font-mono mt-2 hidden sm:block">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3 className="font-serif text-2xl md:text-3xl text-text-primary mb-2 group-hover:text-accent-warm transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-text-tertiary text-sm leading-relaxed max-w-2xl">
+                      {project.description}
+                    </p>
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
+                <div className="flex items-center gap-3 flex-shrink-0 ml-4">
+                  {'github' in project && project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-text-tertiary hover:text-text-primary transition-colors"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                  )}
+                  {'link' in project && project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-text-tertiary hover:text-accent-warm transition-colors"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Metrics row */}
+              <div className="flex flex-wrap items-center gap-6 mb-6 ml-0 sm:ml-12">
+                {project.metrics.map((metric, metricIndex) => (
+                  <div key={metricIndex} className="flex items-baseline gap-2">
+                    <span className="text-xl font-serif text-accent-warm">
+                      {metric.value}
+                    </span>
+                    <span className="text-text-tertiary text-xs uppercase tracking-wider">
+                      {metric.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Achievements */}
+              <ul className="space-y-1.5 mb-6 ml-0 sm:ml-12">
+                {project.achievements.map((achievement, achIndex) => (
+                  <li
+                    key={achIndex}
+                    className="flex items-start gap-3 text-text-secondary text-sm"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-accent-warm mt-2 flex-shrink-0" />
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-2 ml-0 sm:ml-12">
+                {project.technologies.map((tech, techIndex) => (
+                  <span
+                    key={techIndex}
+                    className="px-3 py-1 text-xs font-medium text-text-tertiary border border-dark-tertiary"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
