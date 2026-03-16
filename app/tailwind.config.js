@@ -34,7 +34,7 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          warm: "#e0afa0",
+          warm: "#a0897a",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -55,17 +55,17 @@ module.exports = {
           ring: "hsl(var(--sidebar-ring))",
         },
         dark: {
-          primary: "#0a0a0a",
-          secondary: "#141414",
-          tertiary: "#262626",
+          primary: "#e8e4de",
+          secondary: "#dfd9d1",
+          tertiary: "#c9c2b8",
         },
         text: {
-          primary: "#fafafa",
-          secondary: "#a3a3a3",
-          tertiary: "#737373",
+          primary: "#2c2622",
+          secondary: "#5a524a",
+          tertiary: "#7a716a",
         },
         neutral: {
-          850: "#1a1a1a",
+          850: "#d5cfc7",
         },
       },
       borderRadius: {
@@ -76,9 +76,9 @@ module.exports = {
         xs: "calc(var(--radius) - 6px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        subtle: "0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)",
-        lift: "0 4px 20px 0 rgb(0 0 0 / 0.4)",
+        xs: "0 1px 2px 0 rgb(0 0 0 / 0.03)",
+        subtle: "0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06)",
+        lift: "0 4px 20px 0 rgb(0 0 0 / 0.08)",
       },
       keyframes: {
         "accordion-down": {

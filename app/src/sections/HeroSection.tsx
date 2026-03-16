@@ -40,9 +40,9 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark-primary">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#2c2622]">
       {/* Subtle noise texture overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
         backgroundSize: '24px 24px',
       }} />
@@ -57,7 +57,7 @@ export function HeroSection() {
         {/* Eyebrow */}
         <motion.p
           variants={itemVariants}
-          className="text-text-tertiary text-xs uppercase tracking-[0.3em] mb-8 font-medium"
+          className="text-[#a09890] text-xs uppercase tracking-[0.3em] mb-8 font-medium"
         >
           Front-End Engineer — Nairobi, Kenya
         </motion.p>
@@ -65,32 +65,32 @@ export function HeroSection() {
         {/* Serif headline */}
         <motion.h1
           variants={itemVariants}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-text-primary leading-[0.95] mb-6 tracking-tight"
+          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#f5f0e8] leading-[0.95] mb-6 tracking-tight"
         >
           Timsheldon
           <br />
-          <span className="text-accent-warm">Oure</span>
+          <span className="text-[#a0897a]">Oure</span>
         </motion.h1>
 
         {/* Divider rule */}
         <motion.div
           variants={itemVariants}
-          className="w-16 h-px bg-accent-warm mb-8"
+          className="w-16 h-px bg-[#a0897a] mb-8"
         />
 
         {/* Typewriter subtitle */}
         <motion.div
           variants={itemVariants}
-          className="text-lg sm:text-xl text-text-secondary mb-4 h-8 font-light"
+          className="text-lg sm:text-xl text-[#c9c2b8] mb-4 h-8 font-light"
         >
           <span>{displayText}</span>
-          <span className={`inline-block w-px h-5 bg-accent-warm ml-1 align-middle ${showCursor ? 'opacity-100' : 'opacity-0'}`} />
+          <span className={`inline-block w-px h-5 bg-[#a0897a] ml-1 align-middle ${showCursor ? 'opacity-100' : 'opacity-0'}`} />
         </motion.div>
 
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="text-text-tertiary text-base md:text-lg max-w-xl leading-relaxed mb-12"
+          className="text-[#a09890] text-base md:text-lg max-w-xl leading-relaxed mb-12"
         >
           Building responsive, high-performance web applications
           that drive engagement and conversion.
@@ -99,12 +99,12 @@ export function HeroSection() {
         {/* Contact row */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap items-center gap-x-8 gap-y-3 mb-12 text-sm text-text-tertiary"
+          className="flex flex-wrap items-center gap-x-8 gap-y-3 mb-12 text-sm text-[#a09890]"
         >
           <span>+254 791 058 879</span>
-          <span className="hidden sm:inline text-dark-tertiary">|</span>
+          <span className="hidden sm:inline text-[#5a524a]">|</span>
           <span>timsheldonoure1@gmail.com</span>
-          <span className="hidden sm:inline text-dark-tertiary">|</span>
+          <span className="hidden sm:inline text-[#5a524a]">|</span>
           <span>Nairobi, Kenya</span>
         </motion.div>
 
@@ -118,7 +118,7 @@ export function HeroSection() {
               const element = document.querySelector('#contact');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-accent-warm text-dark-primary px-8 py-3 text-xs uppercase tracking-[0.2em] font-semibold hover:bg-accent-warm/90 transition-colors"
+            className="bg-[#a0897a] text-[#2c2622] px-8 py-3 text-xs uppercase tracking-[0.2em] font-semibold hover:bg-[#b09a8c] transition-colors"
           >
             Get in Touch
           </button>
@@ -127,7 +127,7 @@ export function HeroSection() {
               const element = document.querySelector('#projects');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="group flex items-center gap-2 text-text-secondary hover:text-text-primary text-xs uppercase tracking-[0.2em] font-semibold transition-colors"
+            className="group flex items-center gap-2 text-[#c9c2b8] hover:text-[#f5f0e8] text-xs uppercase tracking-[0.2em] font-semibold transition-colors"
           >
             View My Work
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -141,7 +141,7 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-text-tertiary hover:text-text-primary transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[#a09890] hover:text-[#f5f0e8] transition-colors"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}

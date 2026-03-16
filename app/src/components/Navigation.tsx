@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, Github, Linkedin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -13,17 +12,17 @@ const navLinks = [
 ];
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Lock body scroll when menu is open
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -34,101 +33,113 @@ export function Navigation() {
   };
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-dark-primary/95 backdrop-blur-md border-b border-dark-tertiary/50'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo — editorial serif */}
-          <motion.a
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="font-serif text-xl md:text-2xl text-text-primary tracking-tight"
-            whileHover={{ opacity: 0.7 }}
+    <>
+      {/* Fixed nav bar */}
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
+      >
+        <nav className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-end h-16 md:h-20">
+
+            {/* Hamburger button — always visible */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="pointer-events-auto relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-[6px] group"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            >
+              <span
+                className={`block h-[2px] w-6 bg-[#f5f0e8] transition-all duration-300 origin-center ${
+                  isOpen ? 'rotate-45 translate-y-[8px]' : ''
+                }`}
+              />
+              <span
+                className={`block h-[2px] w-6 bg-[#f5f0e8] transition-all duration-300 ${
+                  isOpen ? 'opacity-0 scale-x-0' : 'opacity-100'
+                }`}
+              />
+              <span
+                className={`block h-[2px] w-6 bg-[#f5f0e8] transition-all duration-300 origin-center ${
+                  isOpen ? '-rotate-45 -translate-y-[8px]' : ''
+                }`}
+              />
+            </button>
+          </div>
+        </nav>
+      </motion.header>
+
+      {/* Fullscreen overlay menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[55] bg-[#2c2622] flex items-center justify-center"
           >
-            Timsheldon<span className="text-accent-warm">.</span>
-          </motion.a>
+            <div className="flex flex-col items-center gap-1">
+              {navLinks.map((link, index) => (
+                <motion.button
+                  key={link.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  transition={{ delay: 0.08 + index * 0.06, duration: 0.4, ease: 'easeOut' }}
+                  onClick={() => scrollToSection(link.href)}
+                  className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#f5f0e8] hover:text-[#a0897a] transition-colors duration-200 py-3 leading-tight"
+                >
+                  {link.name}
+                </motion.button>
+              ))}
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="nav-link text-text-tertiary hover:text-text-primary transition-colors duration-200 text-[13px] uppercase tracking-widest font-medium"
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.08 + navLinks.length * 0.06, duration: 0.4 }}
+                className="mt-8"
               >
-                {link.name}
-              </button>
-            ))}
-          </div>
+                <Button
+                  onClick={() => scrollToSection('#contact')}
+                  className="bg-[#a0897a] text-[#2c2622] hover:bg-[#b09a8c] text-xs uppercase tracking-[0.2em] font-semibold px-8 py-3 rounded-none transition-colors"
+                >
+                  Hire Me
+                </Button>
+              </motion.div>
 
-          {/* Desktop Right */}
-          <div className="hidden md:flex items-center gap-5">
-            <a
-              href="https://github.com/iou123456"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-tertiary hover:text-text-primary transition-colors"
-            >
-              <Github className="w-[18px] h-[18px]" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/timsheldon-oure/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-tertiary hover:text-text-primary transition-colors"
-            >
-              <Linkedin className="w-[18px] h-[18px]" />
-            </a>
-            <Button
-              onClick={() => scrollToSection('#contact')}
-              className="bg-accent-warm text-dark-primary hover:bg-accent-warm/90 text-xs uppercase tracking-widest font-semibold px-6 py-2 rounded-none transition-colors"
-            >
-              Hire Me
-            </Button>
-          </div>
-
-          {/* Mobile Menu */}
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" className="text-text-primary">
-                <Menu className="w-5 h-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-dark-primary border-dark-tertiary">
-              <div className="flex flex-col gap-6 mt-12">
-                {navLinks.map((link, index) => (
-                  <motion.button
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-left text-sm uppercase tracking-widest text-text-secondary hover:text-text-primary transition-colors font-medium"
-                  >
-                    {link.name}
-                  </motion.button>
-                ))}
-                <div className="flex gap-4 pt-6 border-t border-dark-tertiary">
-                  <a href="https://github.com/iou123456" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-text-primary transition-colors">
-                    <Github className="w-5 h-5" />
-                  </a>
-                  <a href="https://www.linkedin.com/in/timsheldon-oure/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-text-primary transition-colors">
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </nav>
-    </motion.header>
+              {/* Social links */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.5, duration: 0.3 }}
+                className="flex items-center gap-6 mt-10"
+              >
+                <a
+                  href="https://github.com/iou123456"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#7a716a] hover:text-[#f5f0e8] transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/timsheldon-oure/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#7a716a] hover:text-[#f5f0e8] transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

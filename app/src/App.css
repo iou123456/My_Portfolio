@@ -6,20 +6,20 @@ html {
 
 /* Selection */
 ::selection {
-  background: rgba(224, 175, 160, 0.2);
-  color: #fafafa;
+  background: rgba(160, 137, 122, 0.2);
+  color: #2c2622;
 }
 
 /* Focus */
 *:focus-visible {
-  outline: 1px solid #e0afa0;
+  outline: 1px solid #a0897a;
   outline-offset: 2px;
 }
 
 /* Horizontal rule utility */
 .rule {
   height: 1px;
-  background: #262626;
+  background: #c9c2b8;
   border: none;
 }
 
@@ -29,12 +29,12 @@ html {
 }
 .card-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Top-accent border on cards */
 .accent-top {
-  border-top: 2px solid #e0afa0;
+  border-top: 2px solid #a0897a;
 }
 
 /* Nav underline reveal */
@@ -48,7 +48,7 @@ html {
   left: 0;
   width: 0;
   height: 1px;
-  background: #e0afa0;
+  background: #a0897a;
   transition: width 0.25s ease;
 }
 .nav-link:hover::after {

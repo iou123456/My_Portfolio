@@ -6,25 +6,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 14 52% 75%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 14 52% 75%;
-    --accent-foreground: 0 0% 4%;
+    --background: 30 16% 88%;
+    --foreground: 20 14% 15%;
+    --card: 30 14% 85%;
+    --card-foreground: 20 14% 15%;
+    --popover: 30 14% 85%;
+    --popover-foreground: 20 14% 15%;
+    --primary: 20 14% 55%;
+    --primary-foreground: 30 16% 88%;
+    --secondary: 30 12% 82%;
+    --secondary-foreground: 20 14% 15%;
+    --muted: 30 12% 82%;
+    --muted-foreground: 20 10% 44%;
+    --accent: 20 14% 55%;
+    --accent-foreground: 30 16% 88%;
     --destructive: 0 62% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 14 52% 75%;
+    --destructive-foreground: 30 16% 88%;
+    --border: 25 10% 76%;
+    --input: 25 10% 76%;
+    --ring: 20 14% 55%;
     --radius: 0.5rem;
   }
 }
@@ -41,19 +41,20 @@
   body {
     @apply bg-dark-primary text-text-primary font-sans antialiased;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    color: #2c2622;
   }
 }
 
 @layer utilities {
-  /* Editorial accent text — single warm color, no gradient */
+  /* Editorial accent text — warm brown */
   .accent-text {
-    color: #e0afa0;
+    color: #a0897a;
   }
   
   /* Legacy class — now maps to accent color for backward compat */
   .gradient-text {
-    color: #e0afa0;
-    -webkit-text-fill-color: #e0afa0;
+    color: #a0897a;
+    -webkit-text-fill-color: #a0897a;
   }
 
   .text-balance {
@@ -71,12 +72,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #c9c2b8;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #404040;
+  background: #a0897a;
 }
 
 /* Reduced motion */
