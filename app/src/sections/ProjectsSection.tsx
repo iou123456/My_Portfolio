@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, BarChart3, Globe, Heart, Github, Activity, Leaf, ExternalLink } from 'lucide-react';
+import { ShoppingCart, BarChart3, Globe, Heart, Github, Activity, Leaf, ExternalLink, Waves } from 'lucide-react';
 
 const projects = [
   {
@@ -98,6 +98,22 @@ const projects = [
       'Built a fully static, dependency-free single-page brochure site optimized for performance and accessibility',
       'Implemented inquiry-driven UX: pre-filled WhatsApp inquiry links and floating WhatsApp CTA for instant contact',
       'Designed editorial layout with serif typography, architectural grids, animated ticker, scroll reveal and sticky navigation',
+    ],
+  },
+  {
+    title: 'Mbuyu Watatu — Beach Retreat Landing Page',
+    description: 'An intimate beach sanctuary on the Kenyan coast — where ancient baobabs meet the Indian Ocean. Part of The Bush Collection family of private retreats.',
+    icon: Waves,
+    link: 'https://mbuyuwatatu.co.ke/',
+    metrics: [
+      { label: 'Accommodation Types', value: '4' },
+      { label: 'Part of', value: 'Bush Collection' },
+    ],
+    technologies: ['React', 'Tailwind CSS', 'Cloudinary', 'Framer Motion', 'REST APIs'],
+    achievements: [
+      'Crafted an editorial luxury landing page for a coastal retreat in Shimoni, Kwale — with immersive hero, scroll animations, and cinematic imagery',
+      'Built accommodation showcase with room-type cards, live pricing, and a register-interest booking flow for Studio, 2-Bed, 3-Bed, and Safari Tent units',
+      'Implemented experiences section, photo gallery with Cloudinary-optimised assets, and a multi-channel contact form tied to The Bush Collection reservations team',
     ],
   },
 ];
